@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title><%= locals.title %></title>
+  </head>
+  <body>
+    <h1><%= locals.title %></h1>
+    <form action="<%= locals.title === "Sign Up" ? "/sign-up" : "/log-in" %>" method="post">
+      <div class="input-field">
+        <label for="username">Username</label>
+        <input type="text" name="username" required/>
+      </div>
+      <div class="input-field">
+        <label for="password">Password</label>
+        <input type="password" name="password" required/>
+      </div>
+      <button type="submit"><%= locals.title %></button>
+    </form>
+  </body>
+</html>
