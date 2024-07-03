@@ -1,0 +1,43 @@
+{
+  "name": "webpack-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "server": "nodemon ./controllers/app",
+    "eslint": "eslint --init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DogeOfFreedom/odin-weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DogeOfFreedom/odin-weather-app/issues"
+  },
+  "homepage": "https://github.com/DogeOfFreedom/odin-weather-app#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.1.2",
+    "prettier": "3.2.5"
+  },
+  "dependencies": {
+    "bson": "^6.7.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "csv": "^6.3.9",
+    "csv-parse": "^5.5.6",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "express-rate-limiter": "^1.3.1",
+    "express-validator": "^7.1.0",
+    "helmet": "^7.1.0",
+    "luxon": "^3.4.4",
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1"
+  }
+}
