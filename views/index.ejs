@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title></title>
+    <title>Members Only</title>
   </head>
   <body>
     <nav>
@@ -41,4 +41,13 @@
       </div>
     <% } %>
   </body>
+  <script>
+    const textArea = document.createElement("textarea");
+    const messageElements = document.querySelectorAll(".message-text");
+    messageElements.forEach(messageElement => {
+      const escapedMsg = messageElement.textContent;
+      textArea.innerHTML = escapedMsg;
+      messageElement.textContent = textArea.value;
+    })
+  </script>
 </html>
