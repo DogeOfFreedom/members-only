@@ -23,7 +23,6 @@ app.listen(port, () => {
 
 // Connect to db
 const mongoDB = process.env.MONGODB_URI || process.env.DEV_DB;
-// const mongoDB = "mongodb+srv://admin:jGefGknySFw8giG9@cluster0.n8wjwiy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose
   .connect(mongoDB)
   .then(() => console.log("connected to db"))
@@ -61,7 +60,7 @@ app.use(express.urlencoded({ extended: true }));
 const router = require("./controllers/router");
 app.use(router);
 
-// error handler
+// error handler for when all routes fail
 app.use((err, req, res, next) => {
   // render the error page
   console.log(err);

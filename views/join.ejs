@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Become a Member</title>
+  </head>
+  <body>
+    <%- include("./partials/header") %>
+    <h1 class="title">Enter the secret code to become a member</h1>
+    <form action="" method="post">
+      <div class="input-field">
+        <label for="code">Enter the secret code</label>
+        <input type="number" name="code" maxlength="4" required />
+      </div>
+      <% if(locals.error) { %>
+        <p class="form-free-text errorMsg"><%= locals.error %></p>
+      <% } %>
+      <button class="formSubmitBtn" type="submit">Submit</button>
+    </form>
+    <h2 class="hint-text">Hint: 5113 + 1832 = ???</h2>
+  </body>
+</html>

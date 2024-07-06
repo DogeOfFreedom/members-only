@@ -35,3 +35,8 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
+const attemptUserLogIn = (req, res) => {
+  console.log(req.user);
+  res.send("oop");
+};

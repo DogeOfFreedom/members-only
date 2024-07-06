@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Create New Message</title>
+  </head>
+  <body>
+    <%- include("./partials/header") %>
+    <h1 class="title">Create New Message</h1>
+    <form action="/create-message" method="post">
+        <div class="input-field">
+            <label for="title">Title</label>
+            <% if(!locals.title) { %>
+                <input value="" name="title" maxlength="40" required></input>
+            <% } else { %>
+                <input value=<%= locals.title %> type="text" name="title" maxlength="40" required/></input>
+            <% } %>
+            <label for="message">Message</label>
+            <% if(!locals.message) { %>
+                <textarea value="" name="message" maxlength="250" required></textarea>
+            <% } else { %>
+                <textarea value=<%= locals.message %> name="message" maxlength="250" required/></textarea>
+            <% } %>
+        </div>
+        <% if (locals.error) { %>
+            <p class="errorMsg"><%= locals.error %></p>
+        <% } %>
+        <button class="formSubmitBtn" type="submit">Submit Message</button>
+    </form>
+  </body>
+</html>

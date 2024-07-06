@@ -7,17 +7,66 @@
     <title><%= locals.title %></title>
   </head>
   <body>
-    <h1><%= locals.title %></h1>
+    <%- include("./partials/header") %>
+    <h1 class="title"><%= locals.title %></h1>
     <form action="<%= locals.title === "Sign Up" ? "/sign-up" : "/log-in" %>" method="post">
+      <% if (locals.title === "Sign Up") { %>
+        <div class="input-field">
+          <label for="firstname">First Name</label>
+          <% if(!locals.firstname) { %>
+            <input value="" name="firstname" maxlength="20" required/>
+          <% } else { %>
+            <input value=<%= locals.firstname %> type="text" name="firstname" maxlength="20" required/>
+          <% } %>
+        </div>
+        <div class="input-field">
+          <label for="lastname">Last Name</label>
+          <% if(!locals.lastname) { %>
+            <input value="" name="lastname" maxlength="20" required/>
+          <% } else { %>
+            <input value=<%= locals.lastname %> type="text" name="lastname" maxlength="20" required/>
+          <% } %>
+        </div>
+      <% } %>
       <div class="input-field">
         <label for="username">Username</label>
-        <input type="text" name="username" required/>
+        <% if(!locals.username) { %>
+          <input value="" type="text" name="username" maxlength="20" required/>
+        <% } else { %>
+          <input value=<%= locals.username %> type="text" name="username" maxlength="20" required/>
+        <% } %>
       </div>
       <div class="input-field">
         <label for="password">Password</label>
-        <input type="password" name="password" required/>
+        <% if(!locals.password) { %>
+          <input value="" type="password" name="password" maxlength="20" required/>
+        <% } else { %>
+          <input value=<%= locals.password %> type="password" name="password" maxlength="20" required/>
+        <% } %>
       </div>
-      <button type="submit"><%= locals.title %></button>
+      <% if (locals.title === "Sign Up") { %>
+        <div class="input-field">
+          <label for="confirm_password">Confirm Password</label>
+          <% if(!locals.confirm_password) { %>
+            <input value="" type="password" name="confirm_password" maxlength="20" required/>
+          <% } else { %>
+            <input value=<%= locals.confirm_password %> type="password" maxlength="20" name="confirm_password" required/>
+          <% } %>
+        </div>
+        <div class="checkbox-input-field">
+          <% if(!locals.isAdmin) { %>
+            <input type="checkbox" name="isAdmin" value="true"/>
+          <% } else { %>
+            <input type="checkbox" name="isAdmin" value="true" checked/>
+            <% } %>
+          <label for="isAdmin">Admin?</label>
+        </div>
+        <p class="form-free-text">Already have an account? <a href="/log-in">Login</a></p>
+      <% } %>
+      <% if(locals.error) { %>
+        <p class="form-free-text errorMsg"><%= locals.error %></p>
+      <% } %>
+      <button class="formSubmitBtn" type="submit"><%= locals.title %></button>
     </form>
   </body>
 </html>

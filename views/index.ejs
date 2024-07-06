@@ -3,12 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title></title>
   </head>
   <body>
-    <h1>Only Members</h1>
-    <a href="/sign-up">Sign Up</a>
-    <br />
-    <a href="/log-in">Log In</a>
+    <nav>
+      <% if (locals.authenticated) { %>
+        <% if (!locals.isMember) { %>
+        <a href="/join"><button class="navBtn">Join the Club</button></a>
+        <% } %>
+        <a href="/create-message"><button class="navBtn">Create a new message</button></a>
+        <a href="/log-out"><button class="navBtn">Log Out</button></a>
+      <% } else { %>
+        <a href="/sign-up"><button class="navBtn">Sign In</button></a>
+      <% } %>
+    </nav>
+    <h1 class="title">Members Only</h1>
+    <% if (!locals.messages || locals.messages.length === 0) { %>
+        <h2 class="no-messages-text">No Messages in the database</h2>
+    <% } else { %>
+      <div class="message-container">
+        <% locals.messages.forEach(message => { %>
+          <div class="message-grid">
+              <span class="message-title"><%= message.title %></span>
+              <span class="message-text"><%= message.message %></span>
+              <% if(locals.isMember) { %>
+                <span class="message-author"><%= message.author %></span>
+                <span class="message-date"><%= message.timestamp %></span>
+              <% } %>
+              <% if(locals.isAdmin) { %>
+                <a class="message-delete-btn" href="<%= '/delete_msg/' + message.id %>">
+                  <button class="navBtn">Delete</button>
+                </a> 
+              <% } %>
+            </div>
+        <% }) %>
+      </div>
+    <% } %>
   </body>
 </html>

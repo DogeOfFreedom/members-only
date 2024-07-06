@@ -3,7 +3,7 @@ const User = require("../model/user");
 const asyncHandler = require("express-async-handler");
 
 const createUser = (req, res, next) => {
-  const { username, password } = req.body;
+  const { firstname, lastname, username, password, isAdmin } = req.body;
   bcrypt.hash(
     password,
     10,
@@ -11,10 +11,15 @@ const createUser = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      const newUser = {
+      let newUser = {
+        firstname,
+        lastname,
         username,
         password: hashedPassword,
       };
+      if (isAdmin) {
+        newUser = { ...newUser, isAdmin: true };
+      }
       await User.create(newUser).then(() => console.log("new user created"));
       return next();
     })
